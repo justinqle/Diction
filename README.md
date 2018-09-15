@@ -1,5 +1,4 @@
-![alt text](https://github.com/justinqle/Diction/blob/master/branding/DictionLogoBlue512x128.png){width="50%"}
-<img src="https://github.com/justinqle/Diction/blob/master/branding/DictionLogoBlue512x128.png" width="128" height="32">
+<img src="https://github.com/justinqle/Diction/blob/master/branding/DictionLogoBlue512x128.png" width="512" height="128">
 
 Diction
 ============
