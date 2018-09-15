@@ -351,11 +351,29 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         return word != null;
     }
 
+    private boolean onDT(float rawX, float rawY) {
+        OcrGraphic graphic = graphicOverlay.getGraphicAtLocation(rawX, rawY);
+        String word = "";
+
+        if (graphic != null) {
+            word = graphic.getTextBlock().getValue();
+            if (word != null) {
+                tts.speak(word, TextToSpeech.QUEUE_ADD, null, "DEFAULT");
+            }
+        }
+        return word != null;
+    }
+
     private class CaptureGestureListener extends GestureDetector.SimpleOnGestureListener {
 
         @Override
         public boolean onSingleTapConfirmed(MotionEvent e) {
             return onTap(e.getRawX(), e.getRawY()) || super.onSingleTapConfirmed(e);
+        }
+
+        @Override
+        public boolean onDoubleTap(MotionEvent e) {
+            return onDT(e.getRawX(), e.getRawY());
         }
     }
 
