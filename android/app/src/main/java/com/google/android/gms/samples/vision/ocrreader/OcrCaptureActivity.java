@@ -86,7 +86,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        setContentView(R.layout.ocr_capture);
+        setContentView(R.layout.activity_main);
 
         preview = (CameraSourcePreview) findViewById(R.id.preview);
         graphicOverlay = (GraphicOverlay<OcrGraphic>) findViewById(R.id.graphicOverlay);
