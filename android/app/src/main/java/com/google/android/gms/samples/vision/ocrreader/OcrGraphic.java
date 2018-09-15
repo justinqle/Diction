@@ -25,6 +25,7 @@ import com.google.android.gms.samples.vision.ocrreader.ui.camera.GraphicOverlay;
 import com.google.android.gms.vision.text.Text;
 import com.google.android.gms.vision.text.TextBlock;
 
+
 import java.util.List;
 
 /**
@@ -115,8 +116,13 @@ public class OcrGraphic extends GraphicOverlay.Graphic {
                     RectF rect = new RectF(currentTextWord.getBoundingBox());
                     rect = translateRect(rect);
                     rectPaint.setStyle(Paint.Style.STROKE);
+<<<<<<< HEAD
                     rectPaint.setColor(Color.WHITE);
                     canvas.drawRoundRect(rect, 15.0f, 15.0f, rectPaint);
+=======
+                    rectPaint.setColor(Color.parseColor("#88AAFFAA"));
+                    canvas.drawRect(rect, rectPaint);
+>>>>>>> 5e5e78298fda4facef69d193ee7d0cd7978f5085
 /*
                     // Draws word in box
                     float scaleFactor = Math.abs((float) 1.4 * (currentTextWord.getBoundingBox().top - currentTextWord.getBoundingBox().bottom));
