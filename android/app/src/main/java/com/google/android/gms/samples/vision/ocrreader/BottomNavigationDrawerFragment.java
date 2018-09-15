@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 public class BottomNavigationDrawerFragment extends BottomSheetDialogFragment implements NavigationView.OnNavigationItemSelectedListener {
 
+    public static char state = 1;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -29,12 +31,15 @@ public class BottomNavigationDrawerFragment extends BottomSheetDialogFragment im
         switch (menuItem.getItemId()) {
             case R.id.no_boxes:
                 Toast.makeText(getContext(), "No Boxes Mode", Toast.LENGTH_LONG).show();
+                state = 0;
                 break;
             case R.id.border_boxes:
                 Toast.makeText(getContext(), "Boxes Mode", Toast.LENGTH_LONG).show();
+                state = 1;
                 break;
             case R.id.fill_boxes:
                 Toast.makeText(getContext(), "Text Overlay Mode", Toast.LENGTH_LONG).show();
+                state = 2;
                 break;
 
         }

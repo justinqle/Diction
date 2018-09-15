@@ -113,13 +113,24 @@ public class OcrGraphic extends GraphicOverlay.Graphic {
             for (Text currentTextWord : currentTextLine.getComponents()) {
                 //if (currentTextWord.getValue().matches("[A-Za-z]+[.?!]*")) { //ANDREW LINE
                     // Draws bounding box around word
+                if(BottomNavigationDrawerFragment.state == 1) {
+                    rectPaint.setColor(Color.parseColor("#AAAAFFAA"));
+                }else if(BottomNavigationDrawerFragment.state == 2){
+                    rectPaint.setColor(Color.parseColor("#FFFFFF"));
+                }
+
+                if(BottomNavigationDrawerFragment.state >= 1) {
                     RectF rect = new RectF(currentTextWord.getBoundingBox());
                     rect = translateRect(rect);
-                    rectPaint.setStyle(Paint.Style.STROKE);
-                    rectPaint.setColor(Color.parseColor("#AAAAFFAA"));
-                    canvas.drawRoundRect(rect, 15.0f, 15.0f, rectPaint);
+                    if(BottomNavigationDrawerFragment.state == 1) {
+                        rectPaint.setStyle(Paint.Style.STROKE);
+                    } else if (BottomNavigationDrawerFragment.state == 2){
+                        rectPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+                    }
 
-/*
+                    canvas.drawRoundRect(rect, 15.0f, 15.0f, rectPaint);
+                }
+                if(BottomNavigationDrawerFragment.state == 2) {
                     // Draws word in box
                     float scaleFactor = Math.abs((float) 1.4 * (currentTextWord.getBoundingBox().top - currentTextWord.getBoundingBox().bottom));
                     float left = translateX(currentTextWord.getBoundingBox().left);
@@ -128,8 +139,8 @@ public class OcrGraphic extends GraphicOverlay.Graphic {
                     textPaint.setTextAlign(Paint.Align.LEFT);
                     textPaint.setTextSize(scaleFactor);
                     //textPaint.getTextBounds(currentTextWord.getValue(), 0, currentTextWord.getValue().length(), rect);
-                    canvas.drawText(currentTextWord.getValue(), left, bottom, textPaint);*/
-                //}
+                    canvas.drawText(currentTextWord.getValue(), left, bottom, textPaint);
+                }
             }
         }
 
