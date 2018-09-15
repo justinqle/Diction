@@ -19,6 +19,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.util.Log;
 
 import com.google.android.gms.samples.vision.ocrreader.ui.camera.GraphicOverlay;
 import com.google.android.gms.vision.text.Text;
@@ -105,6 +106,7 @@ public class OcrGraphic extends GraphicOverlay.Graphic {
 //        canvas.drawRect(rect, rectPaint);
 
         // Break the text into multiple lines and draw each one according to its own bounding box.
+        /*
         List<? extends Text> textComponents = textBlock.getComponents();
         for (Text currentTextLine : textComponents) {
             for (Text currentTextWord : currentTextLine.getComponents()) {
@@ -128,5 +130,32 @@ public class OcrGraphic extends GraphicOverlay.Graphic {
                 }
             }
         }
+        */
+    }
+
+    /*Gets a word at a given coordinate*/
+    public String getWord(float rawX, float rawY){
+
+        TextBlock text = null;
+        text = this.getTextBlock();
+
+        if (text != null && text.getValue() != null) {
+                List<? extends Text> textComponents = text.getComponents();
+
+                for (Text currentTextLine : textComponents) {
+                    //return currentTextLine.getValue();
+                    Log.d("boxybox", "X:" + rawX + "\n");
+                    for (Text currentTextWord : currentTextLine.getComponents()) {
+                        RectF rect = new RectF(currentTextWord.getBoundingBox());
+                        Log.d("boxybox", "Left:" + rect.left + "\n");
+
+                        if (rect.left <= rawX && rect.top <= rawY) {
+                            return currentTextWord.getValue();
+                        }
+                    }
+                }
+            }
+
+        return null;
     }
 }
