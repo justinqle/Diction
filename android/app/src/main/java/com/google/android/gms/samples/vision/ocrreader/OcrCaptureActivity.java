@@ -416,6 +416,8 @@ public final class OcrCaptureActivity extends AppCompatActivity {
                 if (definition != null) {
                     //Log.d("deffyboi", definition[0]);
                     tts.speak("Defined as: " + definition[0], TextToSpeech.QUEUE_ADD, null, "DEFAULT");
+                    if (definition.length == 2)
+                        tts.speak(word + " also means " + definition[1], TextToSpeech.QUEUE_ADD, null, "DEFAULT");
                 }
             }
         }
