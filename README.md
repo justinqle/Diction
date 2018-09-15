@@ -1,4 +1,4 @@
-<img src="https://github.com/justinqle/Diction/blob/master/branding/logo/DictionLogoBlue512x128.png" width="512" height="128">
+<img src="https://github.com/justinqle/Diction/blob/master/branding/logo/DictionLogoBannerBlue512x128.png" width="512" height="128">
 
 Diction
 ============
