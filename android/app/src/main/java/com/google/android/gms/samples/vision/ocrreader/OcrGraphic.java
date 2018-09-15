@@ -144,12 +144,13 @@ public class OcrGraphic extends GraphicOverlay.Graphic {
 
                 for (Text currentTextLine : textComponents) {
                     //return currentTextLine.getValue();
-                    Log.d("boxybox", "X:" + rawX + "\n");
+                    Log.d("boxybox", "Y:" + rawY + "\n");
                     for (Text currentTextWord : currentTextLine.getComponents()) {
                         RectF rect = new RectF(currentTextWord.getBoundingBox());
-                        Log.d("boxybox", "Left:" + rect.left + "\n");
+                        //rect = translateRect(rect);
+                        Log.d("boxybox", currentTextWord.getValue() + " in (" + rect.top + ", " + rect.bottom + ")\n");
+                        if (rect.right > rawX && rect.bottom > rawY) {
 
-                        if (rect.left <= rawX && rect.top <= rawY) {
                             return currentTextWord.getValue();
                         }
                     }
