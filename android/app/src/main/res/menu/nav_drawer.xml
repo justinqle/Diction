@@ -6,18 +6,18 @@
     <group android:checkableBehavior="single">
 
         <item
-            android:id="@+id/read"
+            android:id="@+id/no_boxes"
+            android:icon="@drawable/border_none"
+            android:title="@string/no_boxes" />
+        <item
+            android:id="@+id/border_boxes"
             android:checked="true"
-            android:icon="@drawable/word"
-            android:title="@string/read_word" />
+            android:icon="@drawable/border"
+            android:title="@string/boxes" />
         <item
-            android:id="@+id/definition"
-            android:icon="@drawable/dictionary"
-            android:title="@string/read_definition" />
-        <item
-            android:id="@+id/synonym"
-            android:icon="@drawable/ic_search_black_24dp"
-            android:title="@string/find_synonyms" />
+            android:id="@+id/fill_boxes"
+            android:icon="@drawable/text_overlay"
+            android:title="@string/text_overlay" />
 
     </group>
 

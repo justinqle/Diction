@@ -15,4 +15,7 @@
     <string name="read_word">Read Word</string>
     <string name="read_definition">Read Word &amp; Definition</string>
     <string name="find_synonyms">Find Synonyms</string>
+    <string name="no_boxes">No Boxes</string>
+    <string name="boxes">Boxes</string>
+    <string name="text_overlay">Text Overlay</string>
 </resources>

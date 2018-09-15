@@ -27,14 +27,14 @@ public class BottomNavigationDrawerFragment extends BottomSheetDialogFragment im
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
-            case R.id.read:
-                Toast.makeText(getContext(), "Read Word Mode", Toast.LENGTH_LONG).show();
+            case R.id.no_boxes:
+                Toast.makeText(getContext(), "No Boxes Mode", Toast.LENGTH_LONG).show();
                 break;
-            case R.id.definition:
-                Toast.makeText(getContext(), "Read Word & Definition Mode", Toast.LENGTH_LONG).show();
+            case R.id.border_boxes:
+                Toast.makeText(getContext(), "Boxes Mode", Toast.LENGTH_LONG).show();
                 break;
-            case R.id.synonym:
-                Toast.makeText(getContext(), "Find Synonyms Mode", Toast.LENGTH_LONG).show();
+            case R.id.fill_boxes:
+                Toast.makeText(getContext(), "Text Overlay Mode", Toast.LENGTH_LONG).show();
                 break;
 
         }
