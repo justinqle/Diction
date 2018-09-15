@@ -106,18 +106,18 @@ public class OcrGraphic extends GraphicOverlay.Graphic {
 //        canvas.drawRect(rect, rectPaint);
 
         // Break the text into multiple lines and draw each one according to its own bounding box.
-        /*
+
         List<? extends Text> textComponents = textBlock.getComponents();
         for (Text currentTextLine : textComponents) {
             for (Text currentTextWord : currentTextLine.getComponents()) {
-                if (currentTextWord.getValue().matches("[A-Za-z]+[.?!]*")) { //ANDREW LINE
+                //if (currentTextWord.getValue().matches("[A-Za-z]+[.?!]*")) { //ANDREW LINE
                     // Draws bounding box around word
                     RectF rect = new RectF(currentTextWord.getBoundingBox());
                     rect = translateRect(rect);
-                    rectPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+                    rectPaint.setStyle(Paint.Style.STROKE);
                     rectPaint.setColor(Color.WHITE);
                     canvas.drawRect(rect, rectPaint);
-
+/*
                     // Draws word in box
                     float scaleFactor = Math.abs((float) 1.4 * (currentTextWord.getBoundingBox().top - currentTextWord.getBoundingBox().bottom));
                     float left = translateX(currentTextWord.getBoundingBox().left);
@@ -126,11 +126,11 @@ public class OcrGraphic extends GraphicOverlay.Graphic {
                     textPaint.setTextAlign(Paint.Align.LEFT);
                     textPaint.setTextSize(scaleFactor);
                     //textPaint.getTextBounds(currentTextWord.getValue(), 0, currentTextWord.getValue().length(), rect);
-                    canvas.drawText(currentTextWord.getValue(), left, bottom, textPaint);
-                }
+                    canvas.drawText(currentTextWord.getValue(), left, bottom, textPaint);*/
+                //}
             }
         }
-        */
+
     }
 
     /*Gets a word at a given coordinate*/
@@ -144,12 +144,12 @@ public class OcrGraphic extends GraphicOverlay.Graphic {
 
             for (Text currentTextLine : textComponents) {
                 //return currentTextLine.getValue();
-                Log.d("boxybox", "Y:" + (.76 * rawY) + "\n");
+                //Log.d("boxybox", "Y:" + (.76 * rawY) + "\n");
                 for (Text currentTextWord : currentTextLine.getComponents()) {
                     RectF rect = new RectF(currentTextWord.getBoundingBox());
                     //rect = translateRect(rect);
-                    Log.d("boxybox", currentTextWord.getValue() + " in (" + rect.top + ", " + rect.bottom + ")\n");
-                    if (rect.right > rawX && rect.bottom > .76 * rawY) {
+                    //Log.d("boxybox", currentTextWord.getValue() + " in (" + rect.top + ", " + rect.bottom + ")\n");
+                    if (rect.right > rawX && rect.bottom > .74 * rawY) {
 
                         return currentTextWord.getValue();
                     }
