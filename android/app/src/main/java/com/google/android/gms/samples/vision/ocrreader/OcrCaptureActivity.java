@@ -83,7 +83,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
     // A TextToSpeech engine for speaking a String value.
     private TextToSpeech tts;
 
-    private static HashMap<String, String> dictionary = new HashMap(98000);
+    private static HashMap<String, String[]> dictionary = new HashMap(98000);
 
     /**
      * Initializes the UI and creates the detector pipeline.
@@ -144,8 +144,8 @@ public final class OcrCaptureActivity extends AppCompatActivity {
                 };
         tts = new TextToSpeech(this.getApplicationContext(), listener);
 
-        //load definitions
-        InputStream iS = getResources().openRawResource(R.raw.words);
+        //load noun and verb definitions with synonyms
+        InputStream iS = getResources().openRawResource(R.raw.wordsnv);
         InputStreamReader sR= new InputStreamReader(iS);
         BufferedReader bufferedReader = new BufferedReader(sR);
 
@@ -156,14 +156,37 @@ public final class OcrCaptureActivity extends AppCompatActivity {
                 //Log.d("samba", line + "\n");
                 String[] arr = line.split("\\|");
                 if (arr[0] != null && arr[1] != null) {
-                    dictionary.put(arr[0].trim(), arr[1].trim());
+                    String[] data = new String[] {arr[2].trim(), arr[1].trim()};
+                    dictionary.put(arr[0].trim(), data);
                     //Log.d("samba", arr[0] + "\n");
                 }
             }
             sR.close();
-            } catch (IOException e) {
-                e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //load adj adv definitions WITHOUT synonyms
+        iS = getResources().openRawResource(R.raw.wordsaa);
+        sR= new InputStreamReader(iS);
+        bufferedReader = new BufferedReader(sR);
+
+        try {
+            Log.d("samba", "loading: ");
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                //Log.d("samba", line + "\n");
+                String[] arr = line.split("\\|");
+                if (arr[0] != null && arr[1] != null) {
+                    String[] data = new String[] {arr[1].trim()};
+                    dictionary.put(arr[0].trim(), data);
+                    //Log.d("samba", arr[0] + "\n");
+                }
             }
+            sR.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -381,7 +404,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
     private boolean onTap(float rawX, float rawY) {
         OcrGraphic graphic = graphicOverlay.getGraphicAtLocation(rawX, rawY);
         String word = "";
-        String definition = "";
+        String[] definition;
 
         if (graphic != null) {
             word = graphic.getWord(rawX, rawY);
@@ -391,7 +414,8 @@ public final class OcrCaptureActivity extends AppCompatActivity {
                 definition = dictionary.get(word.toLowerCase());
 
                 if (definition != null) {
-                    tts.speak("Defined as: " + definition, TextToSpeech.QUEUE_ADD, null, "DEFAULT");
+                    //Log.d("deffyboi", definition[0]);
+                    tts.speak("Defined as: " + definition[0], TextToSpeech.QUEUE_ADD, null, "DEFAULT");
                 }
             }
         }
