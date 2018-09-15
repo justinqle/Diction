@@ -1,0 +1,75 @@
+body {
+	margin: 0;
+	align-content: center;
+	color: white;
+	
+  background-color: #3399ff;
+}
+
+body h1 {
+	padding-top: 50px;
+	font-size: 60px;
+}
+
+@font-face {
+  font-family: Harabara;
+  src: url("../fonts/Harabara.eot") format('embedded-opentype');
+  src: url("../fonts/Harabara.otf") format("opentype"),
+  url("../fonts/Harabara.woff") format("woff");
+}
+
+p.algo { color:#ABE5FF;}
+span.rhythm { color:#FFFFFF; }
+
+.title {
+  font-family: Harabara;
+  text-align: center;
+  font-size: 60px;
+  color: white;
+}
+
+
+
+.btn {
+  background-color: skyblue;
+  border: none;
+  color: white;
+  padding: .6em .7em;
+  cursor: pointer;
+  font-size: 1.25em;
+}
+
+.btn:hover {background-color: #00c602}
+
+.btn:active {
+  background-color: #00c602;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.btn-sml {
+  background-color: DodgerBlue;
+  border: none;
+  color: white;
+  padding: .4em .6em;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.btn-sml:hover {background-color: #00c602}
+
+.btn-sml:active {
+  background-color: #00c602;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+/* Links inside the navbar */
+.navbar a {
+    float: left;
+    color: #black;
+    text-align: right;
+    font-size: 24px;
+    padding: 2px 25px;
+    text-decoration: none;
+}
