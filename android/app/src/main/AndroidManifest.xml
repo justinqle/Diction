@@ -25,7 +25,7 @@
         <activity
             android:name="com.google.android.gms.samples.vision.ocrreader.OcrCaptureActivity"
             android:label="Diction"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
