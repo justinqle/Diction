@@ -6,7 +6,7 @@
     <!-- Your product logo - 144dp color version of your app icon -->
     <item>
         <bitmap
-            android:gravity="center"
-            android:src="@drawable/diction_logo_white_512x128" />
+            android:gravity="fill_horizontal"
+            android:src="@drawable/diction_logo_white_512x383" />
     </item>
 </layer-list>
