@@ -337,6 +337,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
      * @param rawY - the raw position of the tap.
      * @return true if the tap was on a TextBlock
      */
+
     private boolean onTap(float rawX, float rawY) {
         OcrGraphic graphic = graphicOverlay.getGraphicAtLocation(rawX, rawY);
         String word = "";
