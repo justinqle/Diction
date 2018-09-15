@@ -44,7 +44,6 @@ import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.samples.vision.ocrreader.ui.camera.CameraSource;
 import com.google.android.gms.samples.vision.ocrreader.ui.camera.CameraSourcePreview;
 import com.google.android.gms.samples.vision.ocrreader.ui.camera.GraphicOverlay;
-import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
 
 import java.io.IOException;
@@ -340,22 +339,15 @@ public final class OcrCaptureActivity extends AppCompatActivity {
      */
     private boolean onTap(float rawX, float rawY) {
         OcrGraphic graphic = graphicOverlay.getGraphicAtLocation(rawX, rawY);
-        TextBlock text = null;
+        String word = "";
+
         if (graphic != null) {
-            text = graphic.getTextBlock();
-            if (text != null && text.getValue() != null) {
-                Log.d(TAG, "text data is being spoken! " + text.getValue());
-                // Speak the string.
-                tts.speak(text.getValue() + ".\n dawg!", TextToSpeech.QUEUE_ADD, null, "DEFAULT");
-            }
-            else {
-                Log.d(TAG, "text data is null");
+            word = graphic.getWord(rawX, rawY);
+            if (word != null) {
+                tts.speak(word, TextToSpeech.QUEUE_ADD, null, "DEFAULT");
             }
         }
-        else {
-            Log.d(TAG,"no text detected");
-        }
-        return text != null;
+        return word != null;
     }
 
     private class CaptureGestureListener extends GestureDetector.SimpleOnGestureListener {

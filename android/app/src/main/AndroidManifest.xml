@@ -11,7 +11,7 @@
         android:allowBackup="true"
         android:fullBackupContent="false"
         android:hardwareAccelerated="true"
-        android:icon="@drawable/icon"
+        android:icon="@drawable/appicon512"
         android:label="OcrReaderApp"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -24,7 +24,7 @@
 
         <activity
             android:name="com.google.android.gms.samples.vision.ocrreader.OcrCaptureActivity"
-            android:label="Read Text"
+            android:label="Diction"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

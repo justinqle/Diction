@@ -1,35 +1,28 @@
-Android Vision API Samples
-============
+<img src="https://github.com/justinqle/Diction/blob/master/branding/DictionLogoBlue512x128.png" width="512" height="128">
 
-These samples demonstrate the vision API for detecting faces and barcodes.
+Diction
+============
+Diction is an Android app that improves your reading experience with verbal feedback of word definitions simply with the tap of a word.
 
 Introduction
 ------------
 
 Pre-requisites
 --------------
- Android Play Services SDK level 26 or greater.
+Android Play Services SDK level 26 or greater.
 
 Getting Started
 ---------------
-The samples build using Gradle in Android Studio.  There is no special
+The app builds using Gradle in Android Studio.  There is no special
 configuration required.
 
-Support (Post Release)
+Resources
 -------
-
-For General questions and discussion on StackOverflow:
-- Stack Overflow: http://stackoverflow.com/questions/tagged/android-vision
-
-If you've found an error in this sample, please file an issue:
-https://github.com/googlesamples/android-vision/issues
-
-Patches are encouraged, and may be submitted by forking this project and
-submitting a pull request through GitHub.
+- Google's Vision API - OCR: https://cloud.google.com/vision/docs/ocr
+- Princeton's WordNet - Dictionary/Thesaurus: https://wordnet.princeton.edu/
 
 License
 -------
-
 Copyright 2015 Google, Inc. All Rights Reserved.
 
 Licensed to the Apache Software Foundation (ASF) under one or more contributor
