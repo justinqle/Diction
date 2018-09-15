@@ -116,7 +116,7 @@ public class OcrGraphic extends GraphicOverlay.Graphic {
                     rect = translateRect(rect);
                     rectPaint.setStyle(Paint.Style.STROKE);
                     rectPaint.setColor(Color.WHITE);
-                    canvas.drawRect(rect, rectPaint);
+                    canvas.drawRoundRect(rect, 15.0f, 15.0f, rectPaint);
 /*
                     // Draws word in box
                     float scaleFactor = Math.abs((float) 1.4 * (currentTextWord.getBoundingBox().top - currentTextWord.getBoundingBox().bottom));
