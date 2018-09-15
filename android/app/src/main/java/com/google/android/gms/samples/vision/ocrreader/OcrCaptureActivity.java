@@ -46,7 +46,11 @@ import com.google.android.gms.samples.vision.ocrreader.ui.camera.CameraSourcePre
 import com.google.android.gms.samples.vision.ocrreader.ui.camera.GraphicOverlay;
 import com.google.android.gms.vision.text.TextRecognizer;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.Locale;
 
 /**
@@ -78,6 +82,8 @@ public final class OcrCaptureActivity extends AppCompatActivity {
 
     // A TextToSpeech engine for speaking a String value.
     private TextToSpeech tts;
+
+    private static HashMap<String, String> dictionary = new HashMap(98000);
 
     /**
      * Initializes the UI and creates the detector pipeline.
@@ -124,6 +130,27 @@ public final class OcrCaptureActivity extends AppCompatActivity {
                     }
                 };
         tts = new TextToSpeech(this.getApplicationContext(), listener);
+
+        //load definitions
+        InputStream iS = getResources().openRawResource(R.raw.words);
+        InputStreamReader sR= new InputStreamReader(iS);
+        BufferedReader bufferedReader = new BufferedReader(sR);
+
+        try {
+            Log.d("samba", "loading: ");
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                //Log.d("samba", line + "\n");
+                String[] arr = line.split("\\|");
+                if (arr[0] != null && arr[1] != null) {
+                    dictionary.put(arr[0].trim(), arr[1].trim());
+                    //Log.d("samba", arr[0] + "\n");
+                }
+            }
+            sR.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
     }
 
     /**
@@ -341,11 +368,18 @@ public final class OcrCaptureActivity extends AppCompatActivity {
     private boolean onTap(float rawX, float rawY) {
         OcrGraphic graphic = graphicOverlay.getGraphicAtLocation(rawX, rawY);
         String word = "";
+        String definition = "";
 
         if (graphic != null) {
             word = graphic.getWord(rawX, rawY);
             if (word != null) {
-                tts.speak(word, TextToSpeech.QUEUE_ADD, null, "DEFAULT");
+                tts.speak(word + ".\n", TextToSpeech.QUEUE_ADD, null, "DEFAULT");
+
+                definition = dictionary.get(word.toLowerCase());
+
+                if (definition != null) {
+                    tts.speak("Defined as: " + definition, TextToSpeech.QUEUE_ADD, null, "DEFAULT");
+                }
             }
         }
         return word != null;
