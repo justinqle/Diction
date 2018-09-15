@@ -125,7 +125,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         gestureDetector = new GestureDetector(this, new CaptureGestureListener());
         scaleGestureDetector = new ScaleGestureDetector(this, new ScaleListener());
 
-        Toast.makeText(this, "Tap to Speak. Pinch/Stretch to zoom",
+        Toast.makeText(this, "Tap to speak word. Pinch/Stretch to zoom",
                 Toast.LENGTH_LONG)
                 .show();
 

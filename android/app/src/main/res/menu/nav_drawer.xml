@@ -3,17 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <item
-        android:id="@+id/read"
-        android:icon="@drawable/word"
-        android:title="@string/read_word" />
-    <item
-        android:id="@+id/definition"
-        android:icon="@drawable/dictionary"
-        android:title="@string/read_definition" />
-    <item
-        android:id="@+id/synonym"
-        android:icon="@drawable/ic_search_black_24dp"
-        android:title="@string/find_synonyms" />
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/read"
+            android:checked="true"
+            android:icon="@drawable/word"
+            android:title="@string/read_word" />
+        <item
+            android:id="@+id/definition"
+            android:icon="@drawable/dictionary"
+            android:title="@string/read_definition" />
+        <item
+            android:id="@+id/synonym"
+            android:icon="@drawable/ic_search_black_24dp"
+            android:title="@string/find_synonyms" />
+
+    </group>
 
 </menu>
