@@ -1,4 +1,4 @@
-![alt text](https://github.com/justinqle/Diction/blob/master/branding/DictionLogo1024x256.png)
+![alt text](https://github.com/justinqle/Diction/blob/master/branding/DictionLogoBlue1024x256.png)
 
 Diction
 ============
