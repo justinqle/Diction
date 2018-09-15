@@ -84,6 +84,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
      */
     @Override
     public void onCreate(Bundle bundle) {
+        setTheme(R.style.AppTheme_NoActionBar);
         super.onCreate(bundle);
         setContentView(R.layout.activity_main);
 
