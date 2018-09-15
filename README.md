@@ -1,3 +1,5 @@
+![alt text](https://raw.githubusercontent.com/justinqle/Diction/branding/DictionLogo1024x256.png)
+
 Diction
 ============
 Diction is an Android app that improves your reading experience with verbal feedback of word definitions simply with the tap of a word.
