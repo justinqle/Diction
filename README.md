@@ -2,7 +2,7 @@
 
 Diction
 ============
-Diction is an Android app that improves your reading experience with verbal feedback of word definitions simply with the tap of a word.
+Diction is an Android app that improves your reading experience with verbal feedback of words, definitions, and synoyms simply with the tap of a word.
 
 Introduction
 ------------
@@ -15,6 +15,12 @@ Getting Started
 ---------------
 The app builds using Gradle in Android Studio.  There is no special
 configuration required.
+
+Features
+---------------
+- 3 different modes to highlight text: No Boxes, Boxes, & Text Overlay
+- Has the ability to read: Words, Definitions, & Synoynms on the tap of a word
+- Can read an entire paragraph with the double tap of a text block
 
 Resources
 -------
