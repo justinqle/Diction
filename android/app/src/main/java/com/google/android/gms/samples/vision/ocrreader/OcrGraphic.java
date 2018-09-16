@@ -19,7 +19,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.util.Log;
 
 import com.google.android.gms.samples.vision.ocrreader.ui.camera.GraphicOverlay;
 import com.google.android.gms.vision.text.Text;
@@ -163,20 +162,20 @@ public class OcrGraphic extends GraphicOverlay.Graphic {
         TextBlock text = null;
         text = this.getTextBlock();
 
+
         if (text != null && text.getValue() != null) {
             List<? extends Text> textComponents = text.getComponents();
 
             for (Text currentTextLine : textComponents) {
                 //return currentTextLine.getValue();
-                Log.d("boxybox", "X: " + rawX + "Y:" + rawY + "\n");
-                Log.d("boxybox", "Xt: " + (((int) rawX) / 2) + " Yt: " + (((int) rawY) / 2) + "\n");
+                //Log.d("boxybox", "X: " + rawX + " Xhalp: " + GraphicOverlay.halp[0] + "\n");
                 for (Text currentTextWord : currentTextLine.getComponents()) {
                     RectF rect = new RectF(currentTextWord.getBoundingBox());
-                    //rect = translateRect(rect);
-                    Log.d("boxybox", currentTextWord.getValue() + " in (" + rect.left + ", " + rect.top + ")\n");
+                    rect = translateRect(rect);
 
+                    /*JUSTIN READ ME AT SOME POINT*/
 
-                    if (currentTextWord.getBoundingBox().contains(((int) rawX) / 2, ((int) rawY) / 2)) {
+                    if (rect.contains(rawX - GraphicOverlay.halp[0], rawY - GraphicOverlay.halp[1])) {
                         return currentTextWord.getValue();
                     }
                 }
@@ -185,4 +184,6 @@ public class OcrGraphic extends GraphicOverlay.Graphic {
 
         return null;
     }
+
+
 }
