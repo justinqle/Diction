@@ -19,12 +19,10 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.util.Log;
 
 import com.google.android.gms.samples.vision.ocrreader.ui.camera.GraphicOverlay;
 import com.google.android.gms.vision.text.Text;
 import com.google.android.gms.vision.text.TextBlock;
-
 
 import java.util.List;
 
@@ -112,25 +110,25 @@ public class OcrGraphic extends GraphicOverlay.Graphic {
         for (Text currentTextLine : textComponents) {
             for (Text currentTextWord : currentTextLine.getComponents()) {
                 //if (currentTextWord.getValue().matches("[A-Za-z]+[.?!]*")) { //ANDREW LINE
-                    // Draws bounding box around word
-                if(BottomNavigationDrawerFragment.state == 1) {
+                // Draws bounding box around word
+                if (BottomNavigationDrawerFragment.state == 1) {
                     rectPaint.setColor(Color.parseColor("#AAAAFFAA"));
-                }else if(BottomNavigationDrawerFragment.state == 2){
+                } else if (BottomNavigationDrawerFragment.state == 2) {
                     rectPaint.setColor(Color.parseColor("#FFFFFF"));
                 }
 
-                if(BottomNavigationDrawerFragment.state >= 1) {
+                if (BottomNavigationDrawerFragment.state >= 1) {
                     RectF rect = new RectF(currentTextWord.getBoundingBox());
                     rect = translateRect(rect);
-                    if(BottomNavigationDrawerFragment.state == 1) {
+                    if (BottomNavigationDrawerFragment.state == 1) {
                         rectPaint.setStyle(Paint.Style.STROKE);
-                    } else if (BottomNavigationDrawerFragment.state == 2){
+                    } else if (BottomNavigationDrawerFragment.state == 2) {
                         rectPaint.setStyle(Paint.Style.FILL_AND_STROKE);
                     }
 
                     canvas.drawRoundRect(rect, 15.0f, 15.0f, rectPaint);
                 }
-                if(BottomNavigationDrawerFragment.state == 2) {
+                if (BottomNavigationDrawerFragment.state == 2) {
                     // Draws word in box
                     float scaleFactor = Math.abs((float) 1.4 * (currentTextWord.getBoundingBox().top - currentTextWord.getBoundingBox().bottom));
                     float left = translateX(currentTextWord.getBoundingBox().left);
@@ -146,24 +144,38 @@ public class OcrGraphic extends GraphicOverlay.Graphic {
 
     }
 
+        /*
+    *             int[] location = new int[2];
+            this.getLocationOnScreen(location);
+            for (T graphic : graphics) {
+                if (graphic.contains(rawX - location[0], rawY - location[1])) {
+                    return graphic;
+                }
+            }
+            return null;
+    * */
+
+
     /*Gets a word at a given coordinate*/
     public String getWord(float rawX, float rawY) {
 
         TextBlock text = null;
         text = this.getTextBlock();
 
+
         if (text != null && text.getValue() != null) {
             List<? extends Text> textComponents = text.getComponents();
 
             for (Text currentTextLine : textComponents) {
                 //return currentTextLine.getValue();
-                //Log.d("boxybox", "Y:" + (.76 * rawY) + "\n");
+                //Log.d("boxybox", "X: " + rawX + " Xhalp: " + GraphicOverlay.halp[0] + "\n");
                 for (Text currentTextWord : currentTextLine.getComponents()) {
                     RectF rect = new RectF(currentTextWord.getBoundingBox());
-                    //rect = translateRect(rect);
-                    //Log.d("boxybox", currentTextWord.getValue() + " in (" + rect.top + ", " + rect.bottom + ")\n");
-                    if (rect.right > rawX && rect.bottom > .74 * rawY) {
+                    rect = translateRect(rect);
 
+                    /*JUSTIN READ ME AT SOME POINT*/
+
+                    if (rect.contains(rawX - GraphicOverlay.halp[0], rawY - GraphicOverlay.halp[1])) {
                         return currentTextWord.getValue();
                     }
                 }
@@ -172,4 +184,6 @@ public class OcrGraphic extends GraphicOverlay.Graphic {
 
         return null;
     }
+
+
 }

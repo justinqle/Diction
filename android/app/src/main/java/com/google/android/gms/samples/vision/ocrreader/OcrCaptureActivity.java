@@ -25,6 +25,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.graphics.Point;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -33,6 +34,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Display;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
@@ -150,7 +152,6 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         BufferedReader bufferedReader = new BufferedReader(sR);
 
         try {
-            Log.d("samba", "loading: ");
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 //Log.d("samba", line + "\n");
@@ -172,7 +173,6 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         bufferedReader = new BufferedReader(sR);
 
         try {
-            Log.d("samba", "loading: ");
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 //Log.d("samba", line + "\n");
@@ -272,12 +272,17 @@ public final class OcrCaptureActivity extends AppCompatActivity {
             }
         }
 
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+
         // Creates and starts the camera.  Note that this uses a higher resolution in comparison
         // to other detection examples to enable the text recognizer to detect small pieces of text.
         cameraSource =
                 new CameraSource.Builder(getApplicationContext(), textRecognizer)
                         .setFacing(CameraSource.CAMERA_FACING_BACK)
-                        .setRequestedPreviewSize(1280, 1024)
+
+                        .setRequestedPreviewSize((3 * size.x) / 2, (3 * size.y) / 2)
                         .setRequestedFps(2.0f)
                         .setFlashMode(useFlash ? Camera.Parameters.FLASH_MODE_TORCH : null)
                         .setFocusMode(autoFocus ? Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO : null)
@@ -401,12 +406,14 @@ public final class OcrCaptureActivity extends AppCompatActivity {
      * @return true if the tap was on a TextBlock
      */
 
+
     private boolean onTap(float rawX, float rawY) {
         OcrGraphic graphic = graphicOverlay.getGraphicAtLocation(rawX, rawY);
         String word = "";
         String[] definition;
 
         if (graphic != null) {
+            Log.d("boxybox", "Looking!");
             word = graphic.getWord(rawX, rawY);
             if (word != null) {
                 tts.speak(word + ".\n", TextToSpeech.QUEUE_ADD, null, "DEFAULT");
