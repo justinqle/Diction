@@ -112,7 +112,7 @@ public class OcrGraphic extends GraphicOverlay.Graphic {
                 //if (currentTextWord.getValue().matches("[A-Za-z]+[.?!]*")) { //ANDREW LINE
                 // Draws bounding box around word
                 if (BottomNavigationDrawerFragment.state == 1) {
-                    rectPaint.setColor(Color.parseColor("#AAAAFFAA"));
+                    rectPaint.setColor(Color.parseColor("#FFAAAA"));
                 } else if (BottomNavigationDrawerFragment.state == 2) {
                     rectPaint.setColor(Color.parseColor("#FFFFFF"));
                 }
