@@ -46,6 +46,8 @@ import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.samples.vision.ocrreader.ui.camera.CameraSource;
 import com.google.android.gms.samples.vision.ocrreader.ui.camera.CameraSourcePreview;
 import com.google.android.gms.samples.vision.ocrreader.ui.camera.GraphicOverlay;
+import com.google.android.gms.vision.text.Text;
+import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
 
 import java.io.BufferedReader;
@@ -53,6 +55,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -415,6 +418,9 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         if (graphic != null) {
             Log.d("boxybox", "Looking!");
             word = graphic.getWord(rawX, rawY);
+
+            word = word.replaceAll("[.!?'\"]*","");
+
             if (word != null) {
                 tts.speak(word + ".\n", TextToSpeech.QUEUE_ADD, null, "DEFAULT");
 
@@ -422,9 +428,9 @@ public final class OcrCaptureActivity extends AppCompatActivity {
 
                 if (definition != null) {
                     //Log.d("deffyboi", definition[0]);
-                    tts.speak("Defined as: " + definition[0], TextToSpeech.QUEUE_ADD, null, "DEFAULT");
+                    tts.speak("It's defined as: " + definition[0], TextToSpeech.QUEUE_ADD, null, "DEFAULT");
                     if (definition.length == 2)
-                        tts.speak(word + " also means " + definition[1], TextToSpeech.QUEUE_ADD, null, "DEFAULT");
+                        tts.speak(word + ".\n this word also means " + definition[1], TextToSpeech.QUEUE_ADD, null, "DEFAULT");
                 }
             }
         }
@@ -433,15 +439,22 @@ public final class OcrCaptureActivity extends AppCompatActivity {
 
     private boolean onDT(float rawX, float rawY) {
         OcrGraphic graphic = graphicOverlay.getGraphicAtLocation(rawX, rawY);
-        String word = "";
+        String textS = "";
+        List<? extends Text> textComponents = null;
 
         if (graphic != null) {
-            word = graphic.getTextBlock().getValue();
-            if (word != null) {
-                tts.speak(word, TextToSpeech.QUEUE_ADD, null, "DEFAULT");
+            textComponents = graphic.getTextBlock().getComponents();
+
+            if (textComponents != null) {
+                for (Text currentTextLine : textComponents) {
+                    textS += currentTextLine.getValue();
+                }
+
+                tts.speak(textS, TextToSpeech.QUEUE_ADD, null, "DEFAULT");
             }
         }
-        return word != null;
+
+        return textComponents != null;
     }
 
     private class CaptureGestureListener extends GestureDetector.SimpleOnGestureListener {
