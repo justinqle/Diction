@@ -144,18 +144,6 @@ public class OcrGraphic extends GraphicOverlay.Graphic {
 
     }
 
-        /*
-    *             int[] location = new int[2];
-            this.getLocationOnScreen(location);
-            for (T graphic : graphics) {
-                if (graphic.contains(rawX - location[0], rawY - location[1])) {
-                    return graphic;
-                }
-            }
-            return null;
-    * */
-
-
     /*Gets a word at a given coordinate*/
     public String getWord(float rawX, float rawY) {
 
