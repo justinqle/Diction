@@ -10,22 +10,11 @@
         android:id="@+id/view_carousel"
         android:layout_width="45dp"
         android:layout_height="45dp"
-        android:layout_gravity="start|bottom"
-        android:layout_margin="16dp"
-        android:background="@android:color/transparent"
-        android:foreground="?android:attr/selectableItemBackgroundBorderless"
-        android:scaleType="fitCenter"
-        android:src="@drawable/ic_view_carousel_black_24dp" />
-
-    <ImageButton
-        android:id="@+id/settings"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
         android:layout_gravity="end|bottom"
         android:layout_margin="16dp"
         android:background="@android:color/transparent"
         android:foreground="?android:attr/selectableItemBackgroundBorderless"
         android:scaleType="fitCenter"
-        android:src="@drawable/ic_settings_black_24dp" />
+        android:src="@drawable/ic_view_carousel_black_24dp" />
 
 </android.support.design.widget.CoordinatorLayout>
