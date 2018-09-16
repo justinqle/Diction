@@ -17,7 +17,6 @@ package com.google.android.gms.samples.vision.ocrreader.ui.camera;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
@@ -53,6 +52,8 @@ public class GraphicOverlay<T extends GraphicOverlay.Graphic> extends View {
     private float heightScaleFactor = 1.0f;
     private int facing = CameraSource.CAMERA_FACING_BACK;
     private Set<T> graphics = new HashSet<>();
+
+    public static int[] halp = new int[2];
 
     /**
      * Base class for a custom graphics object to be rendered within the graphic overlay.  Subclass

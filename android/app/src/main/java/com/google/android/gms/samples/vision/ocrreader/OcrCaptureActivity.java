@@ -150,7 +150,6 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         BufferedReader bufferedReader = new BufferedReader(sR);
 
         try {
-            Log.d("samba", "loading: ");
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 //Log.d("samba", line + "\n");
@@ -172,7 +171,6 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         bufferedReader = new BufferedReader(sR);
 
         try {
-            Log.d("samba", "loading: ");
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 //Log.d("samba", line + "\n");
@@ -278,7 +276,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
                 new CameraSource.Builder(getApplicationContext(), textRecognizer)
                         .setFacing(CameraSource.CAMERA_FACING_BACK)
                         .setRequestedPreviewSize(1280, 1024)
-                        .setRequestedFps(2.0f)
+                        .setRequestedFps(24.0f)
                         .setFlashMode(useFlash ? Camera.Parameters.FLASH_MODE_TORCH : null)
                         .setFocusMode(autoFocus ? Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO : null)
                         .build();
@@ -401,12 +399,14 @@ public final class OcrCaptureActivity extends AppCompatActivity {
      * @return true if the tap was on a TextBlock
      */
 
+
     private boolean onTap(float rawX, float rawY) {
         OcrGraphic graphic = graphicOverlay.getGraphicAtLocation(rawX, rawY);
         String word = "";
         String[] definition;
 
         if (graphic != null) {
+            Log.d("boxybox", "Looking!");
             word = graphic.getWord(rawX, rawY);
             if (word != null) {
                 tts.speak(word + ".\n", TextToSpeech.QUEUE_ADD, null, "DEFAULT");
